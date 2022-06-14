@@ -1,0 +1,9 @@
+
+
+type Query {
+  login(username: String!, password: String!): Jwt  
+}
+
+type Jwt{
+  access_token : String!
+}
