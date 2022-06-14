@@ -12,17 +12,17 @@ const referenceData = {
 const inputData = 'This is a string with {{ ab49fd20.key_1 }}, including {{ 9822df87.another_key }} and also {{ ab49fd20.key_2 }}.'
 
 
-const replace = (inputString) => {
+const parse = (inputString) => {
     
     let result = inputString.replace(/{{ [a-f0-9]{8}\.[\w]+ }}/g, function (dotDelimtedCode) {
         
         const cleanedAndSplitCodes = dotDelimtedCode.replace('{{ ', '').replace(' }}', '').split(".")
 
-        return referenceData[cleanedAndSplitCodes[0]][cleanedAndSplitCodes[1]] || 'nothing'
+        return referenceData[cleanedAndSplitCodes[0]][cleanedAndSplitCodes[1]] || '<nothing>'
       });
     
       return result
 }
 
 console.log(`\nInput data is   : ${inputData}\n` );
-console.log(`Replaced data is: ${replace(inputData)}\n` );
+console.log(`Replaced data is: ${parse(inputData)}\n` );
