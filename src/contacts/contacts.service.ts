@@ -6,7 +6,6 @@ import { Contact } from './entities/contact.entity';
 
 @Injectable()
 export class ContactsService {
-
   //inject a sequelize dao/repository into this service
   constructor(
     @InjectModel(Contact)
@@ -15,14 +14,14 @@ export class ContactsService {
 
   create(createContactInput: CreateContactInput) {
     return this.contactModel.create({
-      firstName :  createContactInput.firstName,
+      firstName: createContactInput.firstName,
       lastName: createContactInput.lastName,
       email: createContactInput.email,
-      homePhone: createContactInput.homePhone ,
+      homePhone: createContactInput.homePhone,
       workPhone: createContactInput.workPhone,
       mobilePhone: createContactInput.mobilePhone,
-      mailingAddress: createContactInput.mailingAddress
-    })
+      mailingAddress: createContactInput.mailingAddress,
+    });
   }
 
   findAll() {
@@ -30,14 +29,33 @@ export class ContactsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} contact`;
+    return this.contactModel.findByPk(id);
   }
 
-  update(id: number, updateContactInput: UpdateContactInput) {
-    return `This action updates a #${id} contact`;
+  async update(id: number, updateContactInput: UpdateContactInput) {
+    
+    //we dont want to try to update the id field!
+    const { id: removedId, ...updateableFields } = updateContactInput;
+
+    const updated = await this.contactModel.update(updateableFields, {
+      where: {
+        id: id,
+      },
+    });
+
+    if (updated[0] != 1) {
+      throw new Error('Update failure');
+    }
+
+    //sqlite doesnt return entity on an update so have to retrieve manually
+    return this.findOne(id);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} contact`;
+    return this.contactModel.destroy({
+      where: {
+        id: id,
+      },
+    });
   }
 }

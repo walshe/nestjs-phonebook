@@ -38,5 +38,5 @@ type Query {
 type Mutation {
   createContact(createContactInput: CreateContactInput!): Contact!
   updateContact(updateContactInput: UpdateContactInput!): Contact!
-  removeContact(id: Int!): Contact
+  removeContact(id: Int!): Boolean
 }
