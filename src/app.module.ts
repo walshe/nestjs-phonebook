@@ -4,6 +4,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ContactsModule } from './contacts/contacts.module';
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     ContactsModule,
     AuthModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
