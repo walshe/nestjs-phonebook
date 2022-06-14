@@ -1,15 +1,33 @@
 type Contact {
-  # Example field (placeholder)
-  exampleField: Int
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String
+  homePhone: String
+  mobilePhone: String
+  workPhone: String
+  mailingAddress: String
 }
 
 input CreateContactInput {
-  # Example field (placeholder)
-  exampleField: Int
+  firstName: String!
+  lastName: String!
+  email: String
+  homePhone: String
+  mobilePhone: String
+  workPhone: String
+  mailingAddress: String
 }
 
 input UpdateContactInput {
-  id: Int!
+  id: ID!
+  firstName: String
+  lastName: String
+  email: String
+  homePhone: String
+  mobilePhone: String
+  workPhone: String
+  mailingAddress: String
 }
 
 type Query {
