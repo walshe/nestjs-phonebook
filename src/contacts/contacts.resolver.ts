@@ -1,6 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { GqlAuthGuard } from 'src/auth/graphql-guard';
+import { GqlAuthGuard } from '../auth/graphql-guard';
 import { ContactsService } from './contacts.service';
 import { CreateContactInput } from './dto/create-contact.input';
 import { PageRequestInput } from './dto/pageRequest.input';
