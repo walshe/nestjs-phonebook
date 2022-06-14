@@ -1,0 +1,24 @@
+type Contact {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input CreateContactInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateContactInput {
+  id: Int!
+}
+
+type Query {
+  contacts: [Contact]!
+  contact(id: Int!): Contact
+}
+
+type Mutation {
+  createContact(createContactInput: CreateContactInput!): Contact!
+  updateContact(updateContactInput: UpdateContactInput!): Contact!
+  removeContact(id: Int!): Contact
+}
