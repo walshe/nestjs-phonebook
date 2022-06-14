@@ -1,11 +1,28 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { CreateContactInput } from './dto/create-contact.input';
 import { UpdateContactInput } from './dto/update-contact.input';
+import { Contact } from './entities/contact.entity';
 
 @Injectable()
 export class ContactsService {
+
+  //inject a sequelize dao/repository into this service
+  constructor(
+    @InjectModel(Contact)
+    private contactModel: typeof Contact,
+  ) {}
+
   create(createContactInput: CreateContactInput) {
-    return 'This action adds a new contact';
+    return this.contactModel.create({
+      firstName :  createContactInput.firstName,
+      lastName: createContactInput.lastName,
+      email: createContactInput.email,
+      homePhone: createContactInput.homePhone ,
+      workPhone: createContactInput.workPhone,
+      mobilePhone: createContactInput.mobilePhone,
+      mailingAddress: createContactInput.mailingAddress
+    })
   }
 
   findAll() {
