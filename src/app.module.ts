@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ContactsModule } from './contacts/contacts.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ContactsModule } from './contacts/contacts.module';
       autoLoadModels: true
     }),
     ContactsModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
