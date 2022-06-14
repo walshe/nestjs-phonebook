@@ -1,6 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ContactsService } from './contacts.service';
 import { CreateContactInput } from './dto/create-contact.input';
+import { PageRequestInput } from './dto/pageRequest.input';
 import { UpdateContactInput } from './dto/update-contact.input';
 
 @Resolver('Contact')
@@ -13,8 +14,8 @@ export class ContactsResolver {
   }
 
   @Query('contacts')
-  findAll() {
-    return this.contactsService.findAll();
+  findAll(@Args('pageRequestInput') pageRequestInput: PageRequestInput) {
+    return this.contactsService.findAll(pageRequestInput);
   }
 
   @Query('contact')

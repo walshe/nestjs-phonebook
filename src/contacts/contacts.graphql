@@ -31,7 +31,7 @@ input UpdateContactInput {
 }
 
 type Query {
-  contacts: [Contact]!
+  contacts(pageRequestInput: PageRequestInput): ContactResults!
   contact(id: Int!): Contact
 }
 
@@ -39,4 +39,23 @@ type Mutation {
   createContact(createContactInput: CreateContactInput!): Contact!
   updateContact(updateContactInput: UpdateContactInput!): Contact!
   removeContact(id: Int!): Boolean
+}
+
+
+input PageRequestInput{
+  sortField: String
+  sortDir: String
+  page: Int
+  pageSize : Int
+}
+
+type ContactResults{
+  totalCount : Int!
+  contacts : [Contact]!
+  pageInfo : PageInfo
+}
+
+type PageInfo {
+  page: Int!
+  totalPages: Int!
 }
